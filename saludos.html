@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saludos</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+    main {
+      text-align: center;
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    #saludo {
+      font-size: 1.75rem;
+      min-height: 3rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    #idioma {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      background: #6366f1;
+      color: #f1f5f9;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button:hover {
+      background: #4f46e5;
+    }
+    button:active {
+      transform: scale(0.96);
+    }
+    a.back {
+      display: block;
+      margin-top: 2rem;
+      color: #94a3b8;
+      text-decoration: none;
+    }
+    a.back:hover {
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🌍 Saludos del mundo</h1>
+    <div id="saludo">👋</div>
+    <div id="idioma">Presioná el botón para empezar</div>
+    <button onclick="siguienteSaludo()">Saludar</button>
+    <a class="back" href="index.html">← Volver</a>
+  </main>
+
+  <script>
+    const saludos = [
+      { texto: '¡Hola, cómo estás?', idioma: 'Español' },
+      { texto: 'Hello, how are you?', idioma: 'Inglés' },
+      { texto: 'Bonjour, comment ça va ?', idioma: 'Francés' },
+      { texto: 'Hallo, wie geht es dir?', idioma: 'Alemán' },
+      { texto: 'Ciao, come stai?', idioma: 'Italiano' },
+      { texto: 'Olá, como você está?', idioma: 'Portugués' },
+      { texto: 'こんにちは、お元気ですか？', idioma: 'Japonés' },
+      { texto: '你好，你好吗？', idioma: 'Chino' },
+      { texto: 'مرحبا، كيف حالك؟', idioma: 'Árabe' },
+      { texto: 'Привет, как дела?', idioma: 'Ruso' }
+    ];
+
+    let indice = -1;
+
+    function siguienteSaludo() {
+      indice = (indice + 1) % saludos.length;
+      document.getElementById('saludo').textContent = saludos[indice].texto;
+      document.getElementById('idioma').textContent = saludos[indice].idioma;
+    }
+  </script>
+</body>
+</html>

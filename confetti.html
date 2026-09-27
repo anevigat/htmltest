@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confeti</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+    main {
+      text-align: center;
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 420px;
+    }
+    button {
+      padding: 1rem 1.25rem;
+      border: none;
+      border-radius: 8px;
+      background: #6366f1;
+      color: #f1f5f9;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button:hover {
+      background: #4f46e5;
+    }
+    button:active {
+      transform: scale(0.96);
+    }
+    a.back {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #94a3b8;
+      text-decoration: none;
+    }
+    a.back:hover {
+      color: #f1f5f9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🎉 Tipos de confeti</h1>
+    <div class="grid">
+      <button onclick="basico()">Básico</button>
+      <button onclick="fuegosArtificiales()">Fuegos artificiales</button>
+      <button onclick="canon()">Cañón lateral</button>
+      <button onclick="lluvia()">Lluvia</button>
+      <button onclick="estrellas()">Estrellas</button>
+      <button onclick="explosion()">Explosión</button>
+    </div>
+    <br>
+    <a class="back" href="index.html">← Volver</a>
+  </main>
+
+  <script>
+    function basico() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function fuegosArtificiales() {
+      const duration = 3000;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+
+    function canon() {
+      confetti({
+        particleCount: 100,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.8 }
+      });
+      confetti({
+        particleCount: 100,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.8 }
+      });
+    }
+
+    function lluvia() {
+      const end = Date.now() + 2500;
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          startVelocity: 0,
+          ticks: 300,
+          gravity: 0.6,
+          spread: 100,
+          origin: { x: Math.random(), y: -0.1 },
+          colors: ['#6366f1', '#f1f5f9', '#22d3ee']
+        });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+
+    function estrellas() {
+      confetti({
+        particleCount: 60,
+        spread: 100,
+        shapes: ['star'],
+        colors: ['#facc15', '#f97316', '#f1f5f9'],
+        scalar: 1.2
+      });
+    }
+
+    function explosion() {
+      confetti({
+        particleCount: 300,
+        spread: 360,
+        startVelocity: 45,
+        origin: { x: 0.5, y: 0.5 }
+      });
+    }
+  </script>
+</body>
+</html>
